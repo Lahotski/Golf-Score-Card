@@ -977,24 +977,26 @@ var GameData = {
             }
 
         };
-        xhttp.open("GET", "https://golf-courses-api.herokuapp.com/courses" + courseID, true);
+        xhttp.open("GET", "https://golf-courses-api.herokuapp.com/courses/" + courseID, true);
         xhttp.send();
     }
+
+})();
     function getCurrentLocationByGeo() {
         var pos = {};
         navigator.geolocation.getCurrentPosition(function(position){
             pos.latitude = position.coords.latitude;
             pos.longitude =  position.coords.longitude;
             pos.radius = 30;
-            var xhr = $.post("https://golf-courses-api.herokuapp.com/courses", pos, "json");
+            var xhr = $.get("https://golf-courses-api.herokuapp.com/courses/", pos, "json");
             xhr.done(function(data){
                 GameData.coursesLocalData = JSON.parse(data);
                 for(var i = 0; i < GameData.coursesLocalData.courses.length; i++){
                     buildCourseRow(GameData.coursesLocalData.courses[i]);
+                    return GolfCard;
                 }
             });
         });
     }
     getCoureseInfo(18300);
     getCurrentLocationByGeo();
-})();
