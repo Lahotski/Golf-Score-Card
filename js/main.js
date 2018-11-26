@@ -2,9 +2,9 @@
     var GameData = {
         players: [],
         courseData: {},
-        coursesLocalData: {},
+        courseLocalData: {},
         dateOfGame: {},
-        scorer: "",
+        score: "",
         attest: "",
         currentHole: 1, outTotal: function (tee) {
             //tees
