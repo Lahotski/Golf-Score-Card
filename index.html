@@ -34,14 +34,10 @@
                     <table id="display-holes-tbl">
                         <thead>
                             <tr id="h-row-display">
-                                <td id="display-r-all"><input id="r-all" type="radio" name="hole-display-option" value="all"
-                                        checked><label for="r-all">All</label></td>
-                                <td id="display-r-front"><input id="r-front" type="radio" name="hole-display-option"
-                                        value="front"><label for="r-front">Front Nine</label></td>
-                                <td id="display-r-back"><input id="r-back" type="radio" name="hole-display-option"
-                                        value="back"><label for="r-back">Back Nine</label></td>
-                                <td id="display-r-single"><input id="r-single" type="radio" name="hole-display-option"
-                                        value="single"><label for="r-single">Single</label></td>
+                                <td id="display-r-all"><input id="r-all" type="radio" name="hole-display-option" value="all" checked><label for="r-all">All</label></td>
+                                <td id="display-r-front"><input id="r-front" type="radio" name="hole-display-option" value="front" onclick="buildFrontNine()"><label for="r-front">Front Nine</label></td>
+                                <td id="display-r-back"><input id="r-back" type="radio" name="hole-display-option" value="back"onclick="buildBackNine()"><label for="r-back">Back Nine</label></td>
+                                <td id="display-r-single"><input id="r-single" type="radio" name="hole-display-option" value="single" onclick="buildSingle()"><label for="r-single">Single</label></td>
                             </tr>
                         </thead>
                     </table>
@@ -106,7 +102,7 @@
 
                         </div>
                         <div id="add-select-body" class="form-group">
-                            <label for="tee-select" class="control-label col-sm-2">Tee:</label>
+                            <label for="tee-select" class="control-label col-sm-2" onload="teeBox">Tee:</label>
                             <div class="input-group col-sm-10">
                                 <select id="tee-select" class="form-control">
                                 </select>
