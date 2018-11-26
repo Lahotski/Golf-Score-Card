@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html onload="addplayer()">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,7 +35,7 @@
                             <tr id="h-row-display">
                                 <td id="display-r-all"><input id="r-all" type="radio" name="hole-display-option" value="all" checked><label for="r-all">All</label></td>
                                 <td id="display-r-front"><input id="r-front" type="radio" name="hole-display-option" value="front" onclick="buildFrontNine()"><label for="r-front">Front Nine</label></td>
-                                <td id="display-r-back"><input id="r-back" type="radio" name="hole-display-option" value="back"onclick="buildBackNine()"><label for="r-back">Back Nine</label></td>
+                                <td id="display-r-back"><input id="r-back" type="radio" name="hole-display-option" value="back" onclick="buildBackNine()"><label for="r-back">Back Nine</label></td>
                                 <td id="display-r-single"><input id="r-single" type="radio" name="hole-display-option" value="single" onclick="buildSingle()"><label for="r-single">Single</label></td>
                             </tr>
                         </thead>
@@ -73,10 +72,8 @@
 
             <table id="hole-nav">
                 <tr>
-                    <td><button id="prev-hole-btn" class="btn"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
-                            Prev Hole</button></td>
-                    <td><button id="next-hole-btn" class="btn">Next Hole <span class="glyphicon glyphicon-menu-right"
-                                aria-hidden="true"></span></button></td>
+                    <td><button id="prev-hole-btn" class="btn"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Prev Hole</button></td>
+                    <td><button id="next-hole-btn" class="btn">Next Hole <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button></td>
                 </tr>
             </table>
         </div>
