@@ -142,8 +142,3 @@ html {
   border-bottom: 2px solid black;
   height: 25px;
 }
-
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
