@@ -16,15 +16,7 @@
 <body>
     <div id="container"></div>
     <div id="content-div">
-        <div id="golf-banner">
-            <div class="black-bar">
-                <div class="bar-left">
-                    <div id="golf-logo"></div>
-                    <div id="logo-text">Golf Score Card</div>
-                </div>
-                <div class="bar-right">
-                </div>
-            </div>
+        <h4>Golf Score Card</h4>
             <div id="map"></div>
         </div>
         <div id="score-card">
@@ -33,10 +25,10 @@
                     <table id="display-holes-tbl">
                         <thead>
                             <tr id="h-row-display">
-                                <td id="display-r-all"><input id="r-all" type="radio" name="hole-display-option" value="all" checked><label for="r-all">All</label></td>
-                                <td id="display-r-front"><input id="r-front" type="radio" name="hole-display-option" value="front" onclick="buildFrontNine()"><label for="r-front">Front Nine</label></td>
-                                <td id="display-r-back"><input id="r-back" type="radio" name="hole-display-option" value="back" onclick="buildBackNine()"><label for="r-back">Back Nine</label></td>
-                                <td id="display-r-single"><input id="r-single" type="radio" name="hole-display-option" value="single" onclick="buildSingle()"><label for="r-single">Single</label></td>
+                                <td id="display-r-all"><input id="r-all" type="radio" name="hole-display-option" value="all" checked>All</td>
+                                <td id="display-r-front"><input id="r-front" type="radio" name="hole-display-option" value="front" onclick="buildFrontNine()">Front Nine</td>
+                                <td id="display-r-back"><input id="r-back" type="radio" name="hole-display-option" value="back" onclick="buildBackNine()">Back Nine</td>
+                                <td id="display-r-single"><input id="r-single" type="radio" name="hole-display-option" value="single" onclick="buildSingle()">Single</td>
                             </tr>
                         </thead>
                     </table>
@@ -62,18 +54,16 @@
                             </tr>
                         </thead>
                         <tbody id="player-rows">
-
                         </tbody>
                     </table>
                 </div>
             </div>
             <div id="b-row-add-player">
             </div>
-
             <table id="hole-nav">
                 <tr>
-                    <td><button id="prev-hole-btn" class="btn"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Prev Hole</button></td>
-                    <td><button id="next-hole-btn" class="btn">Next Hole <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></button></td>
+                    <td><button id="prev-hole-btn" class="btn">Prev Hole</button></td>
+                    <td><button id="next-hole-btn" class="btn">Next Hole</button></td>
                 </tr>
             </table>
         </div>
@@ -92,16 +82,18 @@
                         <div id="add-input-body" class="form-group">
                             <label for="new-player-name" class="control-label col-sm-2">Player Name:</label>
                             <div class="input-group col-sm-10">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                 <input id="new-player-name" class="form-control" type="text" maxlength="25" placeholder="Player Name">
-                                <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
                             </div>
 
                         </div>
                         <div id="add-select-body" class="form-group">
-                            <label for="tee-select" class="control-label col-sm-2" onload="teeBox">Tee:</label>
+                            <label for="tee-select" class="control-label col-sm-2">Tee:</label>
                             <div class="input-group col-sm-10">
-                                <select id="tee-select" class="form-control">
+                                <select>
+                                    <option id="tee-select" class="form-control">Pro</option>
+                                    <option id="tee-select" class="form-control">Champion</option>
+                                    <option id="tee-select" class="form-control">Men</option>
+                                    <option id="tee-select" class="form-control">Women</option>
                                 </select>
                             </div>
                         </div>
@@ -121,7 +113,6 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Select Course</h4>
                 </div>
                 <div class="modal-body">
@@ -130,23 +121,21 @@
                             <table id="select-course-tbl" class="table table-striped .table-hover col-sm-12">
                                 <thead>
                                     <tr>
-                                        <th></th>
-                                        <th>Course Name</th>
-                                        <th>Phone Number</th>
-                                        <th>Public</th>
-                                        <th>Holes</th>
+                                    <th></th>
+                                    <th>Course Name</th>
                                     </tr>
+                                    <td id="display-r-front"><input id="r-front" type="radio" name="hole-display-option" value="front" onclick="getCourse(18300)">Fox Hollow</td>
+                                    <td id="display-r-back"><input id="r-back" type="radio" name="hole-display-option" value="back" onclick="getCourse(11819)">Thanksgiving Point</td>
+                                    <td id="display-r-single"><input id="r-single" type="radio" name="hole-display-option" value="single" onclick="getCourse(19002)">Spanish Oaks</td>
                                 </thead>
-                                <tbody>
-                                </tbody>
                             </table>
                         </div>
                     </form>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button id="select-course-btn" type="button" class="btn btn-primary" disabled>Select</button>
+                    <button type="button" class="btn-default">Close</button>
+                    <button id="select-course-btn" type="button" class="btn-primary" disabled>Select</button>
                 </div>
             </div>
 </body>

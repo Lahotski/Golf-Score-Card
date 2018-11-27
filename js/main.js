@@ -121,7 +121,7 @@
 
         trElement.attr("id", "r-course-" + course.id);
         trElement.attr("data-course", course.id);
-        trElement.click(function () {
+        tdElement.click(function () {
             $(".rad-" + course.id).find("input").prop("checked", true);
             $("#select-course-btn").prop("disabled", false);
         });
@@ -858,7 +858,7 @@
             center: { lat: aLat, lng: aLng },
             mapTypeId: google.maps.MapTypeId.SATELLITE
         });
-        var image = 'images/greenFlag.png';
+        var image = 'img/GreenFlag.jpg';
 
         var beachMarker = new google.maps.Marker({
             position: greenLoc,
@@ -868,7 +868,7 @@
             icon: image
         });
         for (var i = 0; i < GameData.courseData.course.holes[holeNumber].tee_boxes.length; i++) {
-            image = 'images/whiteTee.png';
+            image = 'img/WhiteTee.jpeg';
             var tee = GameData.courseData.course.holes[holeNumber].tee_boxes[i];
             switch (tee.tee_type) {
                 case "pro":
@@ -997,8 +997,6 @@
 function getCourse() {
     var pos = {};
     navigator.geolocation.getCurrentPosition(function (position) {
-        pos.latitude = position.coords.latitude;
-        pos.longitude = position.coords.longitude;
         pos.radius = 30;
         var xhr = getCourse("https://golf-courses-api.herokuapp.com/courses/", pos, "json");
         xhr.done(function (data) {
@@ -1010,4 +1008,3 @@ function getCourse() {
         });
     });
 }
-getCourse();
