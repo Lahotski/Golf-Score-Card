@@ -70,8 +70,8 @@
                     GameData.courseData.course.holes[0].tee_boxes[row].tee_type == "champion" ||
                     GameData.courseData.course.holes[0].tee_boxes[row].tee_type == "men" ||
                     GameData.courseData.course.holes[0].tee_boxes[row].tee_type == "women"
-                ) {
-                    teeBoxCount++;
+                ){
+                teeBoxCount++;
                 }
             }
             return teeBoxCount;
@@ -158,8 +158,8 @@
     function buildHolesRow(display) {
         var tableHead = $("#score-card-tbl thead");
 
-        var trElement = $("<tr></tr>");
-        var thElement = $("<th></th>");
+        var trElement = $("<tr id='hole'></tr>");
+        var thElement = $("<th id='label-hole' class='hole'>Hole</th>");
         trElement.attr("id", "h-row-hole");
         thElement.attr("id", "label-hole");
         thElement.addClass("header hole");
@@ -171,21 +171,21 @@
 
         if (display === "all" || display === "front") {
             for (var i = 1; i < 10; i++) {
-                thElement = $("<th></th>");
+                thElement = $("<th id='display-all'><input id='all' type='radio' name='hole-display-option' value='all' checked>All</th>");
                 thElement.text(i);
                 thElement.attr("id", "hole" + i);
                 thElement.addClass("hole");
                 rowHole.append(thElement);
             }
 
-            thElement = $("<th></th>");
+            thElement = $("<th id='display-front'><input id='front' type='radio' name='hole-display-option' value='front' onclick='buildFrontNine()''>Front Nine</th>");
             thElement.text("OUT");
             thElement.attr("id", "out-label");
             thElement.addClass("hole");
             rowHole.append(thElement);
         }
         if (display === "all") {
-            thElement = $("<th></th>");
+            thElement = $("<th id='display-all'><input id='all' type='radio' name='hole-display-option' value='all' checked>All</th>");
             thElement.text("INITIAL");
             thElement.attr("id", "spacer-label");
             thElement.attr("rowspan", "6")
@@ -194,27 +194,27 @@
         }
         if (display === "all" || display === "back") {
             for (var i = 10; i < 19; i++) {
-                thElement = $("<th></th>");
+                thElement = $("<th id='label-hole' class='hole'>Hole</th>");
                 thElement.text(i);
                 thElement.attr("id", "hole" + i);
                 thElement.addClass("hole");
                 rowHole.append(thElement);
             }
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-hole' class='hole'>Hole</th>");
             thElement.text("IN");
             thElement.attr("id", "in-label");
             thElement.addClass("hole");
             rowHole.append(thElement)
         }
-        thElement = $("<th></th>");
+        thElement = $("<th id='label-hole' class='hole'>Hole</th>");
         thElement.text("TOTAL");
         thElement.attr("id", "total-label");
         thElement.addClass("hole");
         rowHole.append(thElement);
     }
     function buildParRow(display) {
-        var trElement = $("<tr></tr>");
-        var thElement = $("<th></th>");
+        var trElement = $("<tr id='par'></tr>");
+        var thElement = $("<th id='label-par' class='par'>Par</th>");
 
         trElement.attr("id", "h-row-par");
         thElement.attr("id", "label-par");
@@ -227,13 +227,13 @@
 
         if (display === "all" || display === "front") {
             for (var i = 1; i < 10; i++) {
-                thElement = $("<th></th>");
+                thElement = $("<th id='label-par' class='par'>Par</th>");
                 thElement.text("-");
                 thElement.attr("id", "par" + i);
                 thElement.addClass("par");
                 rowPar.append(thElement);
             }
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-par' class='par'>Par</th>");
             thElement.text("-");
             thElement.attr("id", "out-par");
             thElement.addClass("par");
@@ -241,19 +241,19 @@
         }
         if (display === "all" || display === "back") {
             for (i = 10; i < 19; i++) {
-                thElement = $("<th></th>");
+                thElement = $("<th id='label-par' class='par'>Par</th>");
                 thElement.text("-");
                 thElement.attr("id", "par" + i);
                 thElement.addClass("par");
                 rowPar.append(thElement);
             }
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-par' class='par'>Par</th>");
             thElement.text("-");
             thElement.attr("id", "in-par");
             thElement.addClass("par");
             rowPar.append(thElement);
         }
-        thElement = $("<th></th>");
+        thElement = $("<th id='label-par' class='par'>Par</th>");
         thElement.text("-");
         thElement.attr("id", "total-par");
         thElement.addClass("par");
@@ -266,14 +266,14 @@
         var teeBoxCount = GameData.teeBoxCount();
 
         for (var i = 1; i < 10; i++) {
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-hole' class='hole'>Hole</th>");
             thElement.text(i);
             thElement.attr("id", "hole-" + i);
             thElement.addClass("hole hole-number");
             thElement.click(holeClick);
             $("#h-row-hole").append(thElement);
         }
-        thElement = $("<th></th>");
+        thElement = $("<th id='label-blue' class='blue'>Blue</th>");
         thElement.text("OUT");
         thElement.attr("id", "out-label");
         thElement.addClass("hole");
@@ -281,38 +281,38 @@
         for (tee = 0; tee < teeBoxCount; tee++) {
             teeType = GameData.courseData.course.holes[0].tee_boxes[tee].tee_type;
             for (hole = 0; hole < 9; hole++) {
-                thElement = $("<th></th>");
+                thElement = $("<th id='label-red' class='red'>Red</th>");
                 thElement.attr("id", "" + teeType + hole);
                 thElement.addClass(teeType);
                 thElement.text(GameData.courseData.course.holes[hole].tee_boxes[tee].yards);
                 $("#h-row-hole" + teeType).append(thElement);
             }
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-red' class='red'>Red</th>");
             thElement.text(GameData.outTotal(tee));
             thElement.attr("id", "out-label-" + GameData.courseData.course.holes[0].tee_boxes[tee].tee_type);
             thElement.addClass("out " + teeType);
             $("#h-row-hole" + GameData.courseData.course.holes[0].tee_boxes[tee].tee_type).append(thElement);
         }
         for (i = 0; i < 9; i++) {
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-par' class='par'>Par</th>");
             thElement.text(GameData.courseData.course.holes[i].tee_boxes[0].par);
             thElement.attr("id", "par" + i);
             thElement.addClass("par");
             $("#h-row-par").append(thElement);
         }
-        thElement = $("<th></th>");
+        thElement = $("<th id='label-par' class='par'>Par</th>");
         thElement.text(GameData.parOutTotal());
         thElement.attr("id", "out-par");
         thElement.addClass("par out");
         $("#h-row-par").append(thElement);
         for (i = 0; i < 9; i++) {
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-handicap' class='handicap'>Handicap</th>");
             thElement.text(GameData.courseData.course.holes[i].tee_boxes[0].hcp);
             thElement.attr("id", "handicap" + i);
             thElement.addClass("handicap");
             $("#h-row-handicap").append(thElement);
         }
-        thElement = $("<th></th>");
+        thElement = $("<th id='label-handicap' class='handicap'>Handicap</th>");
         thElement.text("");
         thElement.attr("id", "out-handicap");
         thElement.addClass("handicap out");
@@ -325,7 +325,7 @@
         var teeBoxCount = GameData.teeBoxCount();
 
         for (i = 10; i < 19; i++) {
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-hole' class='hole'>Hole</th>");
             thElement.text(i);
             thElement.attr("id", "hole-" + i);
             thElement.addClass("hole hole-number");
@@ -333,7 +333,7 @@
             $("#h-row-hole").append(thElement);
         }
 
-        thElement = $("<th></th>");
+        thElement = $("<th id='label-hole' class='hole'>Hole</th>");
         thElement.text("IN");
         thElement.attr("id", "in-label");
         thElement.addClass("hole");
@@ -348,32 +348,32 @@
                 thElement.text(GameData.courseData.course.holes[hole - 1].tee_boxes[tee].yards);
                 $("#h-row-" + teeType).append(thElement);
             }
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-hole' class='hole'>Hole</th>");
             thElement.text(GameData.inTotal(tee));
             thElement.attr("id", "in-label-" + GameData.courseData.course.holes[0].tee_boxes[tee].tee_type);
             thElement.addClass("in " + teeType);
             $("#h-row-" + GameData.courseData.course.holes[0].tee_boxes[tee].tee_type).append(thElement);
         }
         for (i = 9; i < 18; i++) {
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-par' class='par'>Par</th>");
             thElement.text(GameData.courseData.course.holes[i].tee_boxes[0].par);
             thElement.attr("id", "par" + i);
             thElement.addClass("par");
             $("#h-row-par").append(thElement);
         }
-        thElement = $("<th></th>");
+        thElement = $("<th id='label-par' class='par'>Par</th>");
         thElement.text(GameData.parInTotal());
         thElement.attr("id", "in-par");
         thElement.addClass("par in");
         $("#h-row-par").append(thElement);
         for (i = 9; i < 18; i++) {
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-handicap' class='handicap'>Handicap</th>");
             thElement.text(GameData.courseData.course.holes[i].tee_boxes[0].hcp);
             thElement.attr("id", "handicap" + i);
             thElement.addClass("handicap");
             $("#h-row-handicap").append(thElement);
         }
-        thElement = $("<th></th>");
+        thElement = $("<th id='label-handicap' class='handicap'>Handicap</th>");
         thElement.text("");
         thElement.attr("id", "in-handicap");
         thElement.addClass("handicap in");
@@ -385,20 +385,20 @@
         var thElement, currentHole, teeType, tee, teeBoxCount;
         currentHole = GameData.currentHole;
         teeBoxCount = GameData.teeBoxCount();
-        thElement = $("<th></th>");
+        thElement = $("<th id='label-hole' class='hole'>Hole</th>");
         thElement.text(currentHole);
-        thElement.attr("id", "hole-" + currentHole);
+        thElement.attr("id", "hole" + currentHole);
         thElement.addClass("hole hole-number");
         thElement.click(holeClick);
         $("#h-row-hole").append(thElement);
         if (currentHole < 10) {
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-hole' class='hole'>Hole</th>");
             thElement.text("OUT");
             thElement.attr("id", "out-label");
             thElement.addClass("hole");
             $("#h-row-hole").append(thElement)
         } else {
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-hole' class='hole'>Hole</th>");
             thElement.text("IN");
             thElement.attr("id", "in-label");
             thElement.addClass("hole");
@@ -406,65 +406,64 @@
         }
         for (tee = 0; tee < teeBoxCount; tee++) {
             teeType = GameData.courseData.course.holes[0].tee_boxes[tee].tee_type;
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-hole' class='hole'>Hole</th>");
             thElement.attr("id", "" + teeType + currentHole);
             thElement.addClass(teeType);
             thElement.text(GameData.courseData.course.holes[currentHole - 1].tee_boxes[tee].yards);
             $("#h-row-" + teeType).append(thElement);
 
             if (currentHole < 10) {
-                thElement = $("<th></th>");
+                thElement = $("<th id='label-hole' class='hole'>Hole</th>");
                 thElement.text(GameData.outTotal(tee));
                 thElement.attr("id", "out-label-" + GameData.courseData.course.holes[0].tee_boxes[tee].tee_type);
                 thElement.addClass("out " + teeType);
                 $("#h-row-" + GameData.courseData.course.holes[0].tee_boxes[tee].tee_type).append(thElement);
             } else {
-                thElement = $("<th></th>");
+                thElement = $("<th id='label-hole' class='hole'>Hole</th>");
                 thElement.text(GameData.inTotal(tee));
                 thElement.attr("id", "in-label-" + GameData.courseData.course.holes[0].tee_boxes[tee].tee_type);
                 thElement.addClass("in " + teeType);
                 $("#h-row-" + GameData.courseData.course.holes[0].tee_boxes[tee].tee_type).append(thElement);
             }
         }
-        thElement = $("<th></th>");
+        thElement = $("<th id='label-handicap' class='handicap'>Handicap</th>");
         thElement.text(GameData.courseData.course.holes[GameData.currentHole - 1].tee_boxes[0].hcp);
         thElement.attr("id", "handicap" + currentHole);
         thElement.addClass("handicap");
         $("#h-row-handicap").append(thElement);
 
         if (currentHole < 10) {
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-handicap' class='handicap'>Handicap</th>");
             thElement.text("");
             thElement.attr("id", "out-handicap");
             thElement.addClass("handicap out");
             $("#h-row-handicap").append(thElement);
         } else {
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-handicap' class='handicap'>Handicap</th>");
             thElement.text("");
             thElement.attr("id", "in-handicap");
             thElement.addClass("handicap in");
             $("#h-row-handicap").append(thElement);
         }
         if (currentHole < 10) {
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-par' class='par'>Par</th>");
             thElement.text(GameData.parOutTotal());
             thElement.attr("id", "out-par");
             thElement.addClass("par out");
             $("#h-row-par").append(thElement);
         } else {
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-par' class='par'>Par</th>");
             thElement.text(GameData.parInTotal());
             thElement.attr("id", "in-par");
             thElement.addClass("par in");
             $("#h-row-par").append(thElement);
         }
-        thElement = $("<th></th>");
+        thElement = $("<th id='label-par' class='par'>Par</th>");
         thElement.text(GameData.courseData.course.holes[currentHole - 1].tee_boxes[0].par);
         thElement.attr("id", "par" + currentHole);
         thElement.addClass("par");
         $("#h-row-par").append(thElement);
     }
-
     function buildCourseInfoFromData(display) {
         //build Course Info From Collected Data
         $("#golf-course-label").text(GameData.courseData.course.name);
@@ -472,7 +471,7 @@
         tableHead.html("");
         var teeBoxCount = GameData.teeBoxCount();
         var trElement = $("<tr></tr>");
-        var thElement = $("<th></th>");
+        var thElement = $("<th id='label-hole' class='hole'>Hole</th>");
         trElement.attr("id", "h-row-hole");
         thElement.attr("id", "label-hole");
         thElement.addClass("header hole");
@@ -482,8 +481,7 @@
         for (var tee = 0; tee < teeBoxCount; tee++) {
             var teeType = GameData.courseData.course.holes[0].tee_boxes[tee].tee_type;
             trElement = $("<tr></tr>");
-            thElement = $("<th></th>");
-
+            thElement = $("<th id='label-hole' class='hole'>Hole</th>");
             trElement.attr("id", "h-row-hole" + teeType);
             thElement.attr("id", "label-hole" + teeType);
             thElement.addClass("header" + teeType);
@@ -520,7 +518,21 @@
             var optionElement;
             for (tee = 0; tee < teeBoxCount; tee++) {
                 teeType = GameData.courseData.course.holes[0].tee_boxes[tee].tee_type;
-                optionElement = $("<option></option>");
+                optionElement = $("<option id='tee-select' class='form-control'>Pro</option>");
+                optionElement.attr("id", "option-" + teeType);
+                optionElement.attr("value", teeType.toLowerCase());
+                optionElement.text(teeType);
+                select.append(optionElement);
+                optionElement = $("<option id='tee-select' class='form-control'>Champion</option>");
+                optionElement.attr("id", "option-" + teeType);
+                optionElement.attr("value", teeType.toLowerCase());
+                optionElement.text(teeType);
+                select.append(optionElement);                optionElement = $("<option id='tee-select' class='form-control'>Men</option>");
+                optionElement.attr("id", "option-" + teeType);
+                optionElement.attr("value", teeType.toLowerCase());
+                optionElement.text(teeType);
+                select.append(optionElement);
+                optionElement = $("<option id='tee-select' class='form-control'>Women</option>");
                 optionElement.attr("id", "option-" + teeType);
                 optionElement.attr("value", teeType.toLowerCase());
                 optionElement.text(teeType);
@@ -530,7 +542,7 @@
         if (display === "all") {
             buildFrontNine();
             if (display === "all") {
-                thElement = $("<th></th>");
+                thElement = $("<th id='display-all'><input id='all' type='radio' name='hole-display-option' value='all' checked>All</th>");
                 thElement.text("INITIAL");
                 thElement.attr("id", "spacer-label");
                 thElement.attr("rowspan", teeBoxCount + 3);
@@ -546,7 +558,7 @@
         } else if (display === "single") {
             buildSingle();
         }
-        thElement = $("<th></th>");
+        thElement = $("<th id='label-hole' class='hole'>Yards</th>");
         thElement.text("Total");
         thElement.attr("id", "total-hole");
         thElement.addClass("hole");
@@ -555,13 +567,13 @@
         for (tee = 0; tee < teeBoxCount; tee++) {
             teeType = GameData.courseData.course.holes[0].tee_boxes[tee].tee_type;
 
-            thElement = $("<th></th>");
+            thElement = $("<th id='label-hole' class='hole'>Yards</th>");
             thElement.text(GameData.total(tee));
             thElement.attr("id", "total-" + teeType);
             thElement.addClass("total " + teeType);
             $("#h-row-" + GameData.courseData.course.holes[0].tee_boxes[tee].tee_type).append(thElement);
         }
-        thElement = $("<th></th>");
+        thElement = $("<th id='label-handicap' class='handicap'>Handicap</th>");
         thElement.text("");
         thElement.attr("id", "total-handicap");
         thElement.addClass("total handicap");
@@ -964,13 +976,13 @@
                     GameData.players = [];
                 }
                 if (GameData.courseData.course.hole_count < 10) {
-                    $("#display-r-all").hide();
-                    $("#display-r-back").hide();
+                    $("#r-all").hide();
+                    $("#r-back").hide();
                     $("#r-front").prop("checked", "checked");
                     buildcard("front");
                 } else {
-                    $("#display-r-all").show();
-                    $("#display-r-back").show();
+                    $("#display-all").show();
+                    $("#display-back").show();
                     $("#all").prop("checked", "checked");
                     buildcard("all");
                 }

@@ -25,17 +25,17 @@
                     <table id="display-holes-tbl">
                         <thead>
                             <tr id="h-row-display">
-                                <td id="display-r-all"><input id="all" type="radio" name="hole-display-option" value="all" checked>All</td>
-                                <td id="display-r-front"><input id="front" type="radio" name="hole-display-option" value="front" onclick="buildFrontNine()">Front Nine</td>
-                                <td id="display-r-back"><input id="back" type="radio" name="hole-display-option" value="back" onclick="buildBackNine()">Back Nine</td>
-                                <td id="display-r-single"><input id="single" type="radio" name="hole-display-option" value="single" onclick="buildSingle()">Single</td>
+                                <th id="display-all"><input id="all" type="radio" name="hole-display-option" value="all" checked>All</th>
+                                <th id="display-front"><input id="front" type="radio" name="hole-display-option" value="front" onclick="buildFrontNine()">Front Nine</th>
+                                <th id="display-back"><input id="back" type="radio" name="hole-display-option" value="back" onclick="buildBackNine()">Back Nine</th>
+                                <th id="display-single"><input id="single" type="radio" name="hole-display-option" value="single" onclick="buildSingle()">Single</th>
                             </tr>
                         </thead>
                     </table>
                     <table id="score-card-tbl">
                         <thead>
                             <tr id="hole">
-                                <th id="label-hole" class="hole">Hole</th>
+                                <th id="label-hole" class="hole">Yards</th>
                             </tr>
                             <tr id="blue">
                                 <th id="label-blue" class="blue">Blue</th>
@@ -101,7 +101,6 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="submit-player-btn" disabled>Add Player</button>
                 </div>
             </div>
@@ -131,11 +130,6 @@
                             </table>
                         </div>
                     </form>
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn-default">Close</button>
-                    <button id="select-course-btn" type="button" class="btn-primary" disabled>Select</button>
                 </div>
             </div>
         </div>
