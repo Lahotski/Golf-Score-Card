@@ -7,7 +7,7 @@ html {
   background-size: cover;
   background-repeat: no-repeat;
 }
-.header, .header {
+.header {
   display: flex;
   margin: 8px;
 }

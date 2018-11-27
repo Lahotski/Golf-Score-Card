@@ -285,15 +285,13 @@
                 thElement.attr("id", "" + teeType + hole);
                 thElement.addClass(teeType);
                 thElement.text(GameData.courseData.course.holes[hole].tee_boxes[tee].yards);
-                $("#h-row-" + teeType).append(thElement);
-
+                $("#h-row-hole" + teeType).append(thElement);
             }
             thElement = $("<th></th>");
             thElement.text(GameData.outTotal(tee));
             thElement.attr("id", "out-label-" + GameData.courseData.course.holes[0].tee_boxes[tee].tee_type);
             thElement.addClass("out " + teeType);
-            $("#h-row-" + GameData.courseData.course.holes[0].tee_boxes[tee].tee_type).append(thElement);
-
+            $("#h-row-hole" + GameData.courseData.course.holes[0].tee_boxes[tee].tee_type).append(thElement);
         }
         for (i = 0; i < 9; i++) {
             thElement = $("<th></th>");
@@ -307,7 +305,6 @@
         thElement.attr("id", "out-par");
         thElement.addClass("par out");
         $("#h-row-par").append(thElement);
-
         for (i = 0; i < 9; i++) {
             thElement = $("<th></th>");
             thElement.text(GameData.courseData.course.holes[i].tee_boxes[0].hcp);
@@ -487,23 +484,23 @@
             trElement = $("<tr></tr>");
             thElement = $("<th></th>");
 
-            trElement.attr("id", "h-row-" + teeType);
-            thElement.attr("id", "label-" + teeType);
-            thElement.addClass("header " + teeType);
+            trElement.attr("id", "h-row-hole" + teeType);
+            thElement.attr("id", "label-hole" + teeType);
+            thElement.addClass("header" + teeType);
             thElement.text(teeType);
             tableHead.append(trElement);
             trElement.append(thElement);
         }
-        trElement = $("<tr></tr>");
-        thElement = $("<th></th>");
+        trElement = $("<tr id='handicap'>");
+        thElement = $("<th id='label-handicap' class='handicap'>Handicap</th>");
         trElement.attr("id", "h-row-handicap");
         thElement.attr("id", "label-handicap");
         thElement.addClass("header handicap");
         thElement.text("Handicap");
         tableHead.append(trElement);
         trElement.append(thElement);
-        trElement = $("<tr></tr>");
-        thElement = $("<th></th>");
+        trElement = $("<tr id='handicap'>");
+        thElement = $("<th id='label-handicap' class='handicap'>Handicap</th>");
 
         trElement.attr("id", "h-row-par");
         thElement.attr("id", "label-par");
@@ -549,7 +546,6 @@
         } else if (display === "single") {
             buildSingle();
         }
-
         thElement = $("<th></th>");
         thElement.text("Total");
         thElement.attr("id", "total-hole");
@@ -565,21 +561,16 @@
             thElement.addClass("total " + teeType);
             $("#h-row-" + GameData.courseData.course.holes[0].tee_boxes[tee].tee_type).append(thElement);
         }
-
-
         thElement = $("<th></th>");
         thElement.text("");
         thElement.attr("id", "total-handicap");
         thElement.addClass("total handicap");
         $("#h-row-handicap").append(thElement);
-
         thElement = $("<th></th>");
         thElement.text(GameData.parTotal());
         thElement.attr("id", "total-par");
         thElement.addClass("total par");
         $("#h-row-par").append(thElement);
-
-
     }
     //Player Score Card Build
     function buildPlayerRow(display, playerData) {
@@ -717,22 +708,22 @@
 
             var select = $("#tee-select");
             var optionElement;
-            optionElement = $("<option></option>");
+            optionElement = $("<option id='tee-select' class='form-control'>Pro</option>");
             optionElement.attr("id", "option-pro");
             optionElement.attr("value", "pro");
             optionElement.text("Pro");
             select.append(optionElement);
-            optionElement = $("<option></option>");
+            optionElement = $("<option id='tee-select' class='form-control'>Champion</option>");
             optionElement.attr("id", "option-champion");
             optionElement.attr("value", "champion");
             optionElement.text("Champion");
             select.append(optionElement);
-            optionElement = $("<option></option>");
+            optionElement = $("<option id='tee-select' class='form-control'>Men</option>");
             optionElement.attr("id", "option-men");
             optionElement.attr("value", "men");
             optionElement.text("Men");
             select.append(optionElement);
-            optionElement = $("<option></option>");
+            optionElement = $("<option id='tee-select' class='form-control'>Women</option>");
             optionElement.attr("id", "option-women");
             optionElement.attr("value", "women");
             optionElement.text("Women");
@@ -929,7 +920,6 @@
         }
         buildcard($('input[name="hole-display-option"]:checked').val());
     });
-
     $("#new-player-name").keyup(nameChange);
 
     function selectContents(e) {
@@ -949,25 +939,23 @@
         var w = $(window).width();
 
         if (w < 725) {
-            $("#r-single").prop('checked', true).change();
+            $("#single").prop('checked', true).change();
         } else if (w < 1365) {
             console.log($(window).width());
             if (GameData.currentHole < 10) {
-                $("#r-front").prop('checked', true).change();
+                $("#front").prop('checked', true).change();
             } else {
-                $("#r-back").prop('checked', true).change();
+                $("#back").prop('checked', true).change();
             }
         } else {
-            $("#r-all").prop('checked', true).change();
+            $("#all").prop('checked', true).change();
         }
     });
-
     $("#select-course-btn").click(function () {
         getCourseInfo($('input[name="course-selected"]:checked').val());
         $("#courseModal").modal("hide");
     });
     function getCourseInfo(courseID) {
-
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -983,16 +971,14 @@
                 } else {
                     $("#display-r-all").show();
                     $("#display-r-back").show();
-                    $("#r-all").prop("checked", "checked");
+                    $("#all").prop("checked", "checked");
                     buildcard("all");
                 }
             }
-
         };
         xhttp.open("GET", "https://golf-courses-api.herokuapp.com/courses/" + courseID, true);
         xhttp.send();
     }
-
 })();
 function getCourse() {
     var pos = {};

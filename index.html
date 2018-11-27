@@ -25,32 +25,32 @@
                     <table id="display-holes-tbl">
                         <thead>
                             <tr id="h-row-display">
-                                <td id="display-r-all"><input id="r-all" type="radio" name="hole-display-option" value="all" checked>All</td>
-                                <td id="display-r-front"><input id="r-front" type="radio" name="hole-display-option" value="front" onclick="buildFrontNine()">Front Nine</td>
-                                <td id="display-r-back"><input id="r-back" type="radio" name="hole-display-option" value="back" onclick="buildBackNine()">Back Nine</td>
-                                <td id="display-r-single"><input id="r-single" type="radio" name="hole-display-option" value="single" onclick="buildSingle()">Single</td>
+                                <td id="display-r-all"><input id="all" type="radio" name="hole-display-option" value="all" checked>All</td>
+                                <td id="display-r-front"><input id="front" type="radio" name="hole-display-option" value="front" onclick="buildFrontNine()">Front Nine</td>
+                                <td id="display-r-back"><input id="back" type="radio" name="hole-display-option" value="back" onclick="buildBackNine()">Back Nine</td>
+                                <td id="display-r-single"><input id="single" type="radio" name="hole-display-option" value="single" onclick="buildSingle()">Single</td>
                             </tr>
                         </thead>
                     </table>
                     <table id="score-card-tbl">
                         <thead>
-                            <tr id="h-row-hole">
-                                <th id="label-hole" class="header hole">Hole</th>
+                            <tr id="hole">
+                                <th id="label-hole" class="hole">Hole</th>
                             </tr>
-                            <tr id="h-row-blue">
-                                <th id="label-blue" class="header blue">Blue</th>
+                            <tr id="blue">
+                                <th id="label-blue" class="blue">Blue</th>
                             </tr>
-                            <tr id="h-row-white">
-                                <th id="label-white" class="header white">White</th>
+                            <tr id="white">
+                                <th id="label-white" class="white">White</th>
                             </tr>
-                            <tr id="h-row-red">
-                                <th id="label-red" class="header red">Red</th>
+                            <tr id="red">
+                                <th id="label-red" class="red">Red</th>
                             </tr>
-                            <tr id="h-row-handicap">
-                                <th id="label-handicap" class="header handicap">Handicap</th>
+                            <tr id="handicap">
+                                <th id="label-handicap" class="handicap">Handicap</th>
                             </tr>
-                            <tr id="h-row-par">
-                                <th id="label-par" class="header par">Par</th>
+                            <tr id="par">
+                                <th id="label-par" class="par">Par</th>
                             </tr>
                         </thead>
                         <tbody id="player-rows">
@@ -124,9 +124,9 @@
                                     <th></th>
                                     <th>Course Name</th>
                                     </tr>
-                                    <td id="display-r-front"><input id="r-front" type="radio" name="hole-display-option" value="front" onclick="getCourse(18300)">Fox Hollow</td>
-                                    <td id="display-r-back"><input id="r-back" type="radio" name="hole-display-option" value="back" onclick="getCourse(11819)">Thanksgiving Point</td>
-                                    <td id="display-r-single"><input id="r-single" type="radio" name="hole-display-option" value="single" onclick="getCourse(19002)">Spanish Oaks</td>
+                                    <td id="displayCourse"><input id="r-course" type="radio" name="hole-display-option" value="fox" onclick="getCourse(18300)">Fox Hollow</td>
+                                    <td id="displayCourse"><input id="r-course" type="radio" name="hole-display-option" value="point" onclick="getCourse(11819)">Thanksgiving Point</td>
+                                    <td id="displayCourse"><input id="r-course" type="radio" name="hole-display-option" value="oaks" onclick="getCourse(19002)">Spanish Oaks</td>
                                 </thead>
                             </table>
                         </div>
@@ -138,6 +138,8 @@
                     <button id="select-course-btn" type="button" class="btn-primary" disabled>Select</button>
                 </div>
             </div>
+        </div>
+    </div>
 </body>
 
 </html>
